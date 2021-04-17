@@ -5,6 +5,15 @@ import javax.persistence.*;
 @Entity
 public class Department {
 
+    private @Id @GeneratedValue(strategy = GenerationType.AUTO) Long departmentNumber;
+    private String departmentName;
+    @OneToOne
+    private Employee departmentManager;
+
+    public Department(){
+
+    }
+
     public Long getDepartmentNumber() {
         return departmentNumber;
     }
@@ -27,15 +36,6 @@ public class Department {
 
     public void setDepartmentManager(Employee departmentManager) {
         this.departmentManager = departmentManager;
-    }
-
-    private @Id @GeneratedValue(strategy = GenerationType.AUTO) Long departmentNumber;
-    private String departmentName;
-    @OneToOne
-    private Employee departmentManager;
-
-    public Department(){
-
     }
 
 }
