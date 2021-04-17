@@ -31,7 +31,7 @@ public class DepartmentController {
     }
 
     @GetMapping("/API/department/{departmentNumber}")
-    public Department getDepartment(@PathVariable Long departmentNumber){
+    public Department getDepartment(@PathVariable Long departmentNumber, Department department){
         return repository.findOne(departmentNumber);
     }
 
