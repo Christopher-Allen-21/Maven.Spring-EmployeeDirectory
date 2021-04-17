@@ -24,12 +24,32 @@ public class EmployeeController {
     }
 
     @PutMapping("/API/employee/manager{employeeNumber}")
-    public Employee updateEmployeeManager(@PathVariable long employeeNumber,Employee employee){
+    public Employee updateEmployeeManager(@PathVariable Long employeeNumber,Employee employee){
         Employee temp = repository.findOne(employeeNumber);
         temp.setManager(employee.getManager());
         return repository.save(temp);
     }
 
+    @PutMapping("/API/employee{employeeNumber}")
+    public Employee updateAll(@PathVariable Long employeeNumber,Employee employee){
+        Employee temp = repository.findOne(employeeNumber);
+        temp.setFirstName(employee.getFirstName());
+        temp.setLastName(employee.getLastName());
+        temp.setTitle(employee.getTitle());
+        temp.setPhoneNumber(employee.getPhoneNumber());
+        temp.setEmail(employee.getEmail());
+        temp.setHireDate(employee.getHireDate());
+        temp.setManager(employee.getManager());
+        temp.setDepartmentNumber(employee.getDepartmentNumber());
+        return repository.save(temp);
+    }
+
+    @PutMapping("/API/employee/departmentnumber{employeeNumber}")
+    public Employee updateEmployeeDepartmentNumber(@PathVariable Long employeeNumber,Employee employee){
+        Employee temp = repository.findOne(employeeNumber);
+        temp.setDepartmentNumber(employee.getDepartmentNumber());
+        return repository.save(temp);
+    }
 
 
 }

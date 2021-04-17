@@ -23,5 +23,12 @@ public class DepartmentController {
         return repository.save(department);
     }
 
+    @PutMapping("/API/department{departmentNumber}")
+    public Department updateDepartmentName(@PathVariable Long departmentNumber,Department department){
+        Department temp = repository.findOne(departmentNumber);
+        temp.setDepartmentName(department.getDepartmentName());
+        return repository.save(temp);
+    }
+
 
 }
