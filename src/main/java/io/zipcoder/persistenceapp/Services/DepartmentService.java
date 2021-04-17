@@ -19,8 +19,8 @@ public class DepartmentService {
         return repository.findAll();
     }
 
-    public Department show(Long id){
-        return repository.findOne(id);
+    public Department show(Long departmentNumber){
+        return repository.findOne(departmentNumber);
     }
 
     public Department create(Department department){
@@ -35,8 +35,8 @@ public class DepartmentService {
         return repository.save(originalDepartment);
     }
 
-    public Boolean delete(Long id){
-        repository.delete(id);
+    public Boolean delete(Long departmentNumber){
+        repository.delete(departmentNumber);
         return true;
     }
 }

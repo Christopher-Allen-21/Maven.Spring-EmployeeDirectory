@@ -10,8 +10,14 @@ public class Department {
     @OneToOne
     private Employee departmentManager;
 
+
     public Department(){
 
+    }
+
+    public Department(String departmentName, Employee departmentManager) {
+        this.departmentName = departmentName;
+        this.departmentManager = departmentManager;
     }
 
     public Long getDepartmentNumber() {

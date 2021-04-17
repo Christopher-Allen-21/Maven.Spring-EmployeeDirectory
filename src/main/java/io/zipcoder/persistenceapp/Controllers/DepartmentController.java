@@ -12,7 +12,7 @@ public class DepartmentController {
 
     private DepartmentService service;
 
-    public DepartmentController(DepartmentService service){
+    DepartmentController(DepartmentService service){
         this.service = service;
     }
 

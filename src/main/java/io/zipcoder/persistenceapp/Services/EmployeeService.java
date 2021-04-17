@@ -17,16 +17,16 @@ public class EmployeeService {
          return repository.findAll();
     }
 
-    public Employee show(Long id){
-        return repository.findOne(id);
+    public Employee show(Long employeeNumber){
+        return repository.findOne(employeeNumber);
     }
 
     public Employee create(Employee employee){
         return repository.save(employee);
     }
 
-    public Employee update(Long id,Employee employee){
-        Employee originalEmployee = repository.findOne(id);
+    public Employee update(Long employeeNumber,Employee employee){
+        Employee originalEmployee = repository.findOne(employeeNumber);
         originalEmployee.setFirstName(originalEmployee.getFirstName());
         originalEmployee.setLastName(originalEmployee.getLastName());
         originalEmployee.setTitle(originalEmployee.getTitle());
@@ -37,8 +37,8 @@ public class EmployeeService {
         return repository.save(originalEmployee);
     }
 
-    public Boolean delete(Long id){
-        repository.delete(id);
+    public Boolean delete(Long employeeNumber){
+        repository.delete(employeeNumber);
         return true;
     }
 
