@@ -7,7 +7,7 @@ public class Department {
 
     private @Id @GeneratedValue(strategy = GenerationType.AUTO) Long departmentNumber;
     private String departmentName;
-    @OneToOne
+    @ManyToOne
     private Employee departmentManager;
 
 
