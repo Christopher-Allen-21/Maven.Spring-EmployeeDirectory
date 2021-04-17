@@ -1,4 +1,4 @@
-package io.zipcoder.persistenceapp;
+package io.zipcoder.persistenceapp.Models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
