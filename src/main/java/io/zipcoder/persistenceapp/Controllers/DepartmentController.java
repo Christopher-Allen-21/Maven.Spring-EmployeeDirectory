@@ -40,7 +40,7 @@ public class DepartmentController {
         return repository.save(department);
     }
 
-    @PutMapping("/API/department/departmentName/{id}")
+    @PutMapping("/API/department/{id}")
     public Department updateDepartmentName(@PathVariable Long id,Department department){
         Department temp = repository.findOne(id);
         temp.setDepartmentName(department.getDepartmentName());

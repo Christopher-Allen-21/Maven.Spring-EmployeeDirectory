@@ -39,7 +39,7 @@ CREATE TABLE EMPLOYEE (
     title VARCHAR2(20),
     phone_number VARCHAR2(20),
     email VARCHAR2(255),
-    hire_Date VARCHAR2(20),
+    hire_date VARCHAR2(20),
     manager VARCHAR2(20),
     department_number NUMBER,
     PRIMARY KEY (id)
