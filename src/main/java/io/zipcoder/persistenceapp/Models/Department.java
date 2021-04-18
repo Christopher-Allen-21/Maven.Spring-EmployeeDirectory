@@ -5,27 +5,27 @@ import javax.persistence.*;
 @Entity
 public class Department {
 
-    private @Id @GeneratedValue(strategy = GenerationType.AUTO) Long departmentNumber;
+    private @Id @GeneratedValue(strategy = GenerationType.AUTO) Long id;
     private String departmentName;
-    @ManyToOne
-    private Employee departmentManager;
+    private Long departmentManagerId;
 
 
     public Department(){
 
     }
 
-    public Department(String departmentName, Employee departmentManager) {
+    public Department(String departmentName, Long departmentManagerId, Long id) {
         this.departmentName = departmentName;
-        this.departmentManager = departmentManager;
+        this.departmentManagerId = departmentManagerId;
+        this.id = id;
     }
 
     public Long getDepartmentNumber() {
-        return departmentNumber;
+        return id;
     }
 
     public void setDepartmentNumber(Long departmentNumber) {
-        this.departmentNumber = departmentNumber;
+        this.id = departmentNumber;
     }
 
     public String getDepartmentName() {
@@ -36,12 +36,12 @@ public class Department {
         this.departmentName = departmentName;
     }
 
-    public Employee getDepartmentManager() {
-        return departmentManager;
+    public Long getDepartmentManagerId() {
+        return departmentManagerId;
     }
 
-    public void setDepartmentManager(Employee departmentManager) {
-        this.departmentManager = departmentManager;
+    public void setDepartmentManagerId(Long departmentManagerId) {
+        this.departmentManagerId = departmentManagerId;
     }
 
 }

@@ -30,9 +30,9 @@ public class DepartmentController {
         return departmentList;
     }
 
-    @GetMapping("/API/department/{departmentNumber}")
-    public Department getDepartment(@PathVariable Long departmentNumber, Department department){
-        return repository.findOne(departmentNumber);
+    @GetMapping("/API/department/{id}")
+    public Department getDepartment(@PathVariable Long id, Department department){
+        return repository.findOne(id);
     }
 
     @PostMapping("/API/department")
@@ -40,9 +40,9 @@ public class DepartmentController {
         return repository.save(department);
     }
 
-    @PutMapping("/API/department/{departmentNumber}")
-    public Department updateDepartmentName(@PathVariable Long departmentNumber,Department department){
-        Department temp = repository.findOne(departmentNumber);
+    @PutMapping("/API/department/{id}")
+    public Department updateDepartmentName(@PathVariable Long id,Department department){
+        Department temp = repository.findOne(id);
         temp.setDepartmentName(department.getDepartmentName());
         return repository.save(temp);
     }

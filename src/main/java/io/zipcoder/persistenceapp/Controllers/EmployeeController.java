@@ -30,9 +30,9 @@ public class EmployeeController {
         return employeeList;
     }
 
-    @GetMapping("/API/employee/{employeeNumber}")
-    public Employee getEmployee(@PathVariable Long employeeNumber){
-        return repository.findOne(employeeNumber);
+    @GetMapping("/API/employee/{id}")
+    public Employee getEmployee(@PathVariable Long id){
+        return repository.findOne(id);
     }
 
     @PostMapping("/API/employee")
@@ -40,16 +40,16 @@ public class EmployeeController {
         return repository.save(employee);
     }
 
-    @PutMapping("/API/employee/manager/{employeeNumber}")
-    public Employee updateEmployeeManager(@PathVariable Long employeeNumber,Employee employee){
-        Employee temp = repository.findOne(employeeNumber);
+    @PutMapping("/API/employee/manager/{id}")
+    public Employee updateEmployeeManager(@PathVariable Long id,Employee employee){
+        Employee temp = repository.findOne(id);
         temp.setManager(employee.getManager());
         return repository.save(temp);
     }
 
-    @PutMapping("/API/employee/{employeeNumber}")
-    public Employee updateAll(@PathVariable Long employeeNumber,Employee employee){
-        Employee temp = repository.findOne(employeeNumber);
+    @PutMapping("/API/employee/{id}")
+    public Employee updateAll(@PathVariable Long id,Employee employee){
+        Employee temp = repository.findOne(id);
         temp.setFirstName(employee.getFirstName());
         temp.setLastName(employee.getLastName());
         temp.setTitle(employee.getTitle());
@@ -61,9 +61,9 @@ public class EmployeeController {
         return repository.save(temp);
     }
 
-    @PutMapping("/API/employee/departmentnumber/{employeeNumber}")
-    public Employee updateEmployeeDepartmentNumber(@PathVariable Long employeeNumber,Employee employee){
-        Employee temp = repository.findOne(employeeNumber);
+    @PutMapping("/API/employee/departmentnumber/{id}")
+    public Employee updateEmployeeDepartmentNumber(@PathVariable Long id,Employee employee){
+        Employee temp = repository.findOne(id);
         temp.setDepartmentNumber(employee.getDepartmentNumber());
         return repository.save(temp);
     }

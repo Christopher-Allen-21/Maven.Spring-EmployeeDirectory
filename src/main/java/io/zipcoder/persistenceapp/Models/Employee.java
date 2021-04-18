@@ -8,7 +8,7 @@ import javax.persistence.Id;
 @Entity
 public class Employee {
 
-    private @Id @GeneratedValue(strategy = GenerationType.AUTO) Long employeeNumber;
+    private @Id @GeneratedValue(strategy = GenerationType.AUTO) Long id;
     private String firstName;
     private String lastName;
     private String title;
@@ -22,7 +22,7 @@ public class Employee {
 
     }
 
-    public Employee(String firstName, String lastName, String title, String phoneNumber, String email, String hireDate, String manager, Long departmentNumber) {
+    public Employee(String firstName, String lastName, String title, String phoneNumber, String email, String hireDate, String manager, Long departmentNumber,Long id) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.title = title;
@@ -31,14 +31,15 @@ public class Employee {
         this.hireDate = hireDate;
         this.manager = manager;
         this.departmentNumber = departmentNumber;
+        this.id = id;
     }
 
     public long getEmployeeNumber() {
-        return employeeNumber;
+        return id;
     }
 
     public void setEmployeeNumber(Long employeeNumber) {
-        this.employeeNumber = employeeNumber;
+        this.id = employeeNumber;
     }
 
     public String getFirstName() {
