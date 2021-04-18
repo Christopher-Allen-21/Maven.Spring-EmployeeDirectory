@@ -61,7 +61,7 @@ public class EmployeeController {
         return repository.save(temp);
     }
 
-    @PutMapping("/API/employee/departmentnumber/{id}")
+    @PutMapping("/API/employee/departmentNumber/{id}")
     public Employee updateEmployeeDepartmentNumber(@PathVariable Long id,Employee employee){
         Employee temp = repository.findOne(id);
         temp.setDepartmentNumber(employee.getDepartmentNumber());
