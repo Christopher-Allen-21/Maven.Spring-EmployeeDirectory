@@ -34,14 +34,14 @@ CREATE SEQUENCE hibernate_sequence;
 
 CREATE TABLE EMPLOYEE (
     id NUMBER NOT NULL AUTO_INCREMENT,
-    first_name VARCHAR2(255) NOT NULL DEFAULT '',
-    last_name VARCHAR2(255) NOT NULL DEFAULT '',
-    title VARCHAR2(20) NOT NULL DEFAULT '',
-    phone_number VARCHAR2(20) NOT NULL DEFAULT '',
-    email VARCHAR2(255) NOT NULL DEFAULT '',
-    hire_Date VARCHAR2(20) NOT NULL DEFAULT '',
-    manager VARCHAR2(20) NOT NULL DEFAULT '',
-    department_number NUMBER NOT NULL,
+    first_name VARCHAR2(255),
+    last_name VARCHAR2(255),
+    title VARCHAR2(20),
+    phone_number VARCHAR2(20),
+    email VARCHAR2(255),
+    hire_Date VARCHAR2(20),
+    manager VARCHAR2(20),
+    department_number NUMBER,
     PRIMARY KEY (id)
     );
 
