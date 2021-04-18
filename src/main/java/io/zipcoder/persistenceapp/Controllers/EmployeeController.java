@@ -110,14 +110,53 @@ public class EmployeeController {
         return employeeList;
     }
 
-    //Remove a particular employee or list of employees
+    //Remove a particular employee
     @DeleteMapping("/API/employee/deleteEmployee/{id}")
     public Boolean deleteEmployee(@PathVariable Long id){
         repository.delete(id);
         return true;
     }
 
+    //Remove a list of employees
+    @DeleteMapping("/API/employee/deleteEmployee/")
+    public Boolean deleteAllEmployees(){
+        repository.deleteAll();
+        return true;
+    }
+
+    //Remove all employees from a particular department
+    @DeleteMapping("/API/employee/deleteEmployeeInDepartment/{departmentNumber}")
+    public Boolean deleteEmployeesInDepartment(@PathVariable Long departmentNumber){
+        List<Employee> employeeList = new ArrayList<>();
+        for(Employee e : repository.findAll()){
+            if(e.getDepartmentNumber() == departmentNumber){
+                employeeList.add(e);
+            }
+        }
+        repository.delete(employeeList);
+        return true;
+    }
+
+    //Remove all employees under a particular manager (Including indirect reports)
+    @DeleteMapping("/API/employee/deleteEmployeeUnderManager/{manager}")
+    public Boolean deleteEmployeesUnderManager(@PathVariable String manager){
+        List<Employee> employeeList = new ArrayList<>();
+        for(Employee e : repository.findAll()){
+            if(e.getManager()!=null && e.getManager().equals(manager)){
+                employeeList.add(e);
+            }
+        }
+        repository.delete(employeeList);
+        return true;
+    }
+
     //Get the entire reporting hierarchy for an employee (their manager + manager's manager etc.)
 
     //Get all employees who report directly or indirectly to a particular manager. This should still work for an employee who is not a manager -- they have no direct reports
+
+    //Remove all direct reports to a manager. Any employees previously managed by the deleted employees should now be managed by the next manager up the hierarchy.
+
+    //Get the department, title, or other attributes of a particular employee.
+
+
 }

@@ -50,4 +50,6 @@ public class DepartmentController {
     }
 
 
+    //Merge departments (given two department names eg: A and B, move the manager of B to report to the manager of A, and update all other employees to be members of department A)
+
 }
