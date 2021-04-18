@@ -34,12 +34,13 @@ public class EmployeeController {
     public Employee getEmployee(@PathVariable Long id){
         return repository.findOne(id);
     }
-
+    // Create employee (Via POST)
     @PostMapping("/API/employee")
     public Employee createEmployee(Employee employee){
         return repository.save(employee);
     }
 
+    //Update an employee to set their manager
     @PutMapping("/API/employee/manager/{id}")
     public Employee updateEmployeeManager(@PathVariable Long id,Employee employee){
         Employee temp = repository.findOne(id);
@@ -47,6 +48,7 @@ public class EmployeeController {
         return repository.save(temp);
     }
 
+    //Update other employee fields
     @PutMapping("/API/employee/{id}")
     public Employee updateAll(@PathVariable Long id,Employee employee){
         Employee temp = repository.findOne(id);
@@ -61,6 +63,7 @@ public class EmployeeController {
         return repository.save(temp);
     }
 
+    //Set a new department manager (Update department)
     @PutMapping("/API/employee/departmentNumber/{id}")
     public Employee updateEmployeeDepartmentNumber(@PathVariable Long id,Employee employee){
         Employee temp = repository.findOne(id);
@@ -69,4 +72,52 @@ public class EmployeeController {
     }
 
 
+    //Get the list of employees under a particular manager
+    @GetMapping("/API/employee/employeesUnderManager/{manager}")
+    public List<Employee> getEmployeesUnderManager(@PathVariable String manager){
+        List<Employee> employeeList = new ArrayList<>();
+        for(Employee e : repository.findAll()){
+            if(e.getManager()!=null && e.getManager().equals(manager)){
+                employeeList.add(e);
+            }
+        }
+        return employeeList;
+    }
+
+
+    //Get a list of employees with no assigned manager
+    @GetMapping("/API/employee/employeesWithNoManager")
+    public List<Employee> getEmployeesWithNoAssignedManager(){
+        List<Employee> employeeList = new ArrayList<>();
+        for(Employee e : repository.findAll()){
+            if(e.getManager() == null){
+                employeeList.add(e);
+            }
+        }
+        return employeeList;
+    }
+
+
+    //Get all employees of a particular department
+    @GetMapping("/API/employee/employeesInDepartment/{departmentNumber}")
+    public List<Employee> getEmployeesUnderManager(@PathVariable Long departmentNumber){
+        List<Employee> employeeList = new ArrayList<>();
+        for(Employee e : repository.findAll()){
+            if(e.getDepartmentNumber() == departmentNumber){
+                employeeList.add(e);
+            }
+        }
+        return employeeList;
+    }
+
+    //Remove a particular employee or list of employees
+    @DeleteMapping("/API/employee/deleteEmployee/{id}")
+    public Boolean deleteEmployee(@PathVariable Long id){
+        repository.delete(id);
+        return true;
+    }
+
+    //Get the entire reporting hierarchy for an employee (their manager + manager's manager etc.)
+
+    //Get all employees who report directly or indirectly to a particular manager. This should still work for an employee who is not a manager -- they have no direct reports
 }

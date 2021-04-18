@@ -35,11 +35,13 @@ public class DepartmentController {
         return repository.findOne(id);
     }
 
+    //Create a Department
     @PostMapping("/API/department")
     public Department createDepartment(Department department){
         return repository.save(department);
     }
 
+    //Change the name of a department
     @PutMapping("/API/department/{id}")
     public Department updateDepartmentName(@PathVariable Long id,Department department){
         Department temp = repository.findOne(id);
