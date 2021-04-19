@@ -1,9 +1,6 @@
 package io.zipcoder.persistenceapp.Models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Employee {
@@ -15,14 +12,15 @@ public class Employee {
     private String phoneNumber;
     private String email;
     private String hireDate;
-    private String manager;
+    @ManyToOne
+    private Employee manager;
     private Long departmentNumber;
 
     public Employee() {
 
     }
 
-    public Employee(String firstName, String lastName, String title, String phoneNumber, String email, String hireDate, String manager, Long departmentNumber,Long id) {
+    public Employee(String firstName, String lastName, String title, String phoneNumber, String email, String hireDate, Employee manager, Long departmentNumber,Long id) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.title = title;
@@ -90,11 +88,11 @@ public class Employee {
         this.hireDate = hireDate;
     }
 
-    public String getManager() {
+    public Employee getManager() {
         return manager;
     }
 
-    public void setManager(String manager) {
+    public void setManager(Employee manager) {
         this.manager = manager;
     }
 

@@ -30,10 +30,12 @@ public class EmployeeController {
         return employeeList;
     }
 
+    //Get the department, title, or other attributes of a particular employee.
     @GetMapping("/API/employee/{id}")
     public Employee getEmployee(@PathVariable Long id){
         return repository.findOne(id);
     }
+
     // Create employee (Via POST)
     @PostMapping("/API/employee")
     public Employee createEmployee(Employee employee){
@@ -71,10 +73,10 @@ public class EmployeeController {
         return repository.save(temp);
     }
 
-
+    //MIGHT NOT WORK
     //Get the list of employees under a particular manager
     @GetMapping("/API/employee/employeesUnderManager/{manager}")
-    public List<Employee> getEmployeesUnderManager(@PathVariable String manager){
+    public List<Employee> getEmployeesUnderManager(@PathVariable Employee manager){
         List<Employee> employeeList = new ArrayList<>();
         for(Employee e : repository.findAll()){
             if(e.getManager()!=null && e.getManager().equals(manager)){
@@ -150,13 +152,27 @@ public class EmployeeController {
         return true;
     }
 
+    @GetMapping("/API/employee/reportingHierarchy/{id}")
+    public List<Employee> getReportingHierarchy(@PathVariable Long id){
+        List<Employee> employeeList = new ArrayList<>();
+        Employee currentEmployee = repository.findOne(id);
+        while(currentEmployee.getManager() != null){
+            employeeList.add(currentEmployee);
+            currentEmployee = currentEmployee.getManager();
+        }
+        return employeeList;
+    }
+
+
+
     //Get the entire reporting hierarchy for an employee (their manager + manager's manager etc.)
 
     //Get all employees who report directly or indirectly to a particular manager. This should still work for an employee who is not a manager -- they have no direct reports
 
+
     //Remove all direct reports to a manager. Any employees previously managed by the deleted employees should now be managed by the next manager up the hierarchy.
 
-    //Get the department, title, or other attributes of a particular employee.
+
 
 
 }

@@ -40,7 +40,8 @@ CREATE TABLE EMPLOYEE (
     phone_number VARCHAR2(20),
     email VARCHAR2(255),
     hire_date VARCHAR2(20),
-    manager VARCHAR2(20),
+    manager JAVA_OBJECT,
+    manager_id NUMBER,
     department_number NUMBER,
     PRIMARY KEY (id)
     );
