@@ -120,7 +120,7 @@ public class EmployeeController {
     }
 
     //Remove a list of employees
-    @DeleteMapping("/API/employee/deleteEmployee/")
+    @DeleteMapping("/API/employee/deleteEmployee")
     public Boolean deleteAllEmployees(){
         repository.deleteAll();
         return true;
