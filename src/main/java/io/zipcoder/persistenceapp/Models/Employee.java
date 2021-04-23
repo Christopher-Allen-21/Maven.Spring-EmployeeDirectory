@@ -100,12 +100,12 @@ public class Employee {
         this.hireDate = hireDate;
     }
 
-    public Long getManager() {
+    public Long getManagerId() {
         return managerId;
     }
 
-    public void setManager(Long manager) {
-        this.managerId = manager;
+    public void setManagerId(Long managerId) {
+        this.managerId = managerId;
     }
 
     public Long getDepartmentNumber() {

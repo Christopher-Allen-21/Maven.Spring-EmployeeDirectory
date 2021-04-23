@@ -59,7 +59,7 @@ public class EmployeeController {
     @PutMapping("/API/employee/manager/{id}")
     public Employee updateEmployeeManager(@PathVariable Long id,@RequestBody Employee employee){
         Employee temp = repository.findOne(id);
-        temp.setManager(employee.getManager());
+        temp.setManagerId(employee.getManagerId());
         return repository.save(temp);
     }
 
@@ -73,7 +73,7 @@ public class EmployeeController {
         temp.setPhoneNumber(employee.getPhoneNumber());
         temp.setEmail(employee.getEmail());
         temp.setHireDate(employee.getHireDate());
-        temp.setManager(employee.getManager());
+        temp.setManagerId(employee.getManagerId());
         temp.setDepartmentNumber(employee.getDepartmentNumber());
         return repository.save(temp);
     }
@@ -88,11 +88,11 @@ public class EmployeeController {
 
     //MIGHT NOT WORK
     //Get the list of employees under a particular manager
-    @GetMapping("/API/employee/employeesUnderManager/{manager}")
-    public List<Employee> getEmployeesUnderManager(@PathVariable Employee manager){
+    @GetMapping("/API/employee/employeesUnderManager/{managerId}")
+    public List<Employee> getEmployeesUnderManager(@PathVariable Long managerId){
         List<Employee> employeeList = new ArrayList<>();
         for(Employee e : repository.findAll()){
-            if(e.getManager()!=null && e.getManager().equals(manager)){
+            if(e.getManagerId() == managerId){
                 employeeList.add(e);
             }
         }
@@ -105,7 +105,7 @@ public class EmployeeController {
     public List<Employee> getEmployeesWithNoAssignedManager(){
         List<Employee> employeeList = new ArrayList<>();
         for(Employee e : repository.findAll()){
-            if(e.getManager() == null){
+            if(e.getManagerId() == null){
                 employeeList.add(e);
             }
         }
@@ -115,7 +115,7 @@ public class EmployeeController {
 
     //Get all employees of a particular department
     @GetMapping("/API/employee/employeesInDepartment/{departmentNumber}")
-    public List<Employee> getEmployeesUnderManager(@PathVariable Long departmentNumber){
+    public List<Employee> getEmployeesInDepartment(@PathVariable Long departmentNumber){
         List<Employee> employeeList = new ArrayList<>();
         for(Employee e : repository.findAll()){
             if(e.getDepartmentNumber() == departmentNumber){
@@ -157,7 +157,7 @@ public class EmployeeController {
     public Boolean deleteEmployeesUnderManager(@PathVariable String manager){
         List<Employee> employeeList = new ArrayList<>();
         for(Employee e : repository.findAll()){
-            if(e.getManager()!=null && e.getManager().equals(manager)){
+            if(e.getManagerId()!=null && e.getManagerId().equals(manager)){
                 employeeList.add(e);
             }
         }
