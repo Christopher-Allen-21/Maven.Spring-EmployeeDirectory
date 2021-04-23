@@ -21,6 +21,12 @@ public class DepartmentController {
         this.repository = repository;
     }
 
+//    {
+//        "departmentNumber": 2,
+//            "departmentName": "Chris",
+//            "managerId": 123
+//    }
+
     @GetMapping("/API/department")
     public List<Department> getDepartmentList(){
         List<Department> departmentList = new ArrayList<>();
@@ -37,13 +43,13 @@ public class DepartmentController {
 
     //Create a Department
     @PostMapping("/API/department")
-    public Department createDepartment(Department department){
+    public Department createDepartment(@RequestBody Department department){
         return repository.save(department);
     }
 
     //Change the name of a department
     @PutMapping("/API/department/{id}")
-    public Department updateDepartmentName(@PathVariable Long id,Department department){
+    public Department updateDepartmentName(@PathVariable Long id,@RequestBody Department department){
         Department temp = repository.findOne(id);
         temp.setDepartmentName(department.getDepartmentName());
         return repository.save(temp);

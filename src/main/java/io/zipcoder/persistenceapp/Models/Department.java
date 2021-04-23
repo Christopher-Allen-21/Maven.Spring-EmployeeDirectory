@@ -4,28 +4,24 @@ import javax.persistence.*;
 
 @Entity
 public class Department {
-
-    private @Id @GeneratedValue(strategy = GenerationType.AUTO) Long id;
+    private @Id Long departmentNumber;
     private String departmentName;
-    private Long departmentManagerId;
+    private Long managerId;
 
+    public Department() {}
 
-    public Department(){
-
-    }
-
-    public Department(String departmentName, Long departmentManagerId, Long id) {
+    public Department(Long departmentNumber, String departmentName, Long manager) {
+        this.departmentNumber = departmentNumber;
         this.departmentName = departmentName;
-        this.departmentManagerId = departmentManagerId;
-        this.id = id;
+        this.managerId = manager;
     }
 
     public Long getDepartmentNumber() {
-        return id;
+        return departmentNumber;
     }
 
     public void setDepartmentNumber(Long departmentNumber) {
-        this.id = departmentNumber;
+        this.departmentNumber = departmentNumber;
     }
 
     public String getDepartmentName() {
@@ -36,12 +32,11 @@ public class Department {
         this.departmentName = departmentName;
     }
 
-    public Long getDepartmentManagerId() {
-        return departmentManagerId;
+    public Long getManager() {
+        return managerId;
     }
 
-    public void setDepartmentManagerId(Long departmentManagerId) {
-        this.departmentManagerId = departmentManagerId;
+    public void setManager(Long manager) {
+        this.managerId = manager;
     }
-
 }

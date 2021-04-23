@@ -21,6 +21,19 @@ public class EmployeeController {
         this.repository = repository;
     }
 
+//    {
+//        "employeeId": 1,
+//        "firstName": "Chris",
+//        "lastName": "Allen",
+//        "title": "Associate",
+//        "phoneNumber": "240-688-1234",
+//        "email": "thisIsAnnoying@yahoo.com",
+//        "hireDate": "2021-05-15",
+//        "departmentNumber": 123,
+//        "manager": null
+//    }
+
+
     @GetMapping("/API/employee")
     public List<Employee> getEmployeeList(){
         List<Employee> employeeList = new ArrayList<>();
@@ -38,13 +51,13 @@ public class EmployeeController {
 
     // Create employee (Via POST)
     @PostMapping("/API/employee")
-    public Employee createEmployee(Employee employee){
+    public Employee createEmployee(@RequestBody Employee employee){
         return repository.save(employee);
     }
 
     //Update an employee to set their manager
     @PutMapping("/API/employee/manager/{id}")
-    public Employee updateEmployeeManager(@PathVariable Long id,Employee employee){
+    public Employee updateEmployeeManager(@PathVariable Long id,@RequestBody Employee employee){
         Employee temp = repository.findOne(id);
         temp.setManager(employee.getManager());
         return repository.save(temp);
@@ -52,7 +65,7 @@ public class EmployeeController {
 
     //Update other employee fields
     @PutMapping("/API/employee/{id}")
-    public Employee updateAll(@PathVariable Long id,Employee employee){
+    public Employee updateAll(@PathVariable Long id,@RequestBody Employee employee){
         Employee temp = repository.findOne(id);
         temp.setFirstName(employee.getFirstName());
         temp.setLastName(employee.getLastName());
@@ -67,7 +80,7 @@ public class EmployeeController {
 
     //Set a new department manager (Update department)
     @PutMapping("/API/employee/departmentNumber/{id}")
-    public Employee updateEmployeeDepartmentNumber(@PathVariable Long id,Employee employee){
+    public Employee updateEmployeeDepartmentNumber(@PathVariable Long id,@RequestBody Employee employee){
         Employee temp = repository.findOne(id);
         temp.setDepartmentNumber(employee.getDepartmentNumber());
         return repository.save(temp);
@@ -152,16 +165,16 @@ public class EmployeeController {
         return true;
     }
 
-    @GetMapping("/API/employee/reportingHierarchy/{id}")
-    public List<Employee> getReportingHierarchy(@PathVariable Long id){
-        List<Employee> employeeList = new ArrayList<>();
-        Employee currentEmployee = repository.findOne(id);
-        while(currentEmployee.getManager() != null){
-            employeeList.add(currentEmployee);
-            currentEmployee = currentEmployee.getManager();
-        }
-        return employeeList;
-    }
+//    @GetMapping("/API/employee/reportingHierarchy/{id}")
+//    public List<Employee> getReportingHierarchy(@PathVariable Long id){
+//        List<Employee> employeeList = new ArrayList<>();
+//        Employee currentEmployee = repository.findOne(id);
+//        while(currentEmployee.getManager() != null){
+//            employeeList.add(currentEmployee);
+//            currentEmployee = currentEmployee.getManager();
+//        }
+//        return employeeList;
+//    }
 
 
 

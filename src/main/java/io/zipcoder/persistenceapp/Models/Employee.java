@@ -1,43 +1,55 @@
 package io.zipcoder.persistenceapp.Models;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Employee {
-
-    private @Id @GeneratedValue(strategy = GenerationType.AUTO) Long id;
+    private @Id @GeneratedValue Long employeeId;
     private String firstName;
     private String lastName;
     private String title;
     private String phoneNumber;
     private String email;
-    private String hireDate;
-    @ManyToOne
-    private Employee manager;
+    private Date hireDate;
     private Long departmentNumber;
+    private Long managerId;
 
-    public Employee() {
-
-    }
-
-    public Employee(String firstName, String lastName, String title, String phoneNumber, String email, String hireDate, Employee manager, Long departmentNumber,Long id) {
+    //middle managers and employees
+    public Employee(Long employeeId, String firstName, String lastName, String title, String phoneNumber, String email, Date hireDate, Long managerId, Long departmentNumber) {
+        this.employeeId = employeeId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.title = title;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.hireDate = hireDate;
-        this.manager = manager;
+        this.managerId = managerId;
         this.departmentNumber = departmentNumber;
-        this.id = id;
     }
 
-    public long getEmployeeNumber() {
-        return id;
+    //manager has no manager
+    public Employee(Long employeeId, String firstName, String lastName, String title, String phoneNumber, String email, Date hireDate, Long departmentNumber) {
+        this.employeeId = employeeId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.title = title;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.hireDate = hireDate;
+        this.departmentNumber = departmentNumber;
     }
 
-    public void setEmployeeNumber(Long employeeNumber) {
-        this.id = employeeNumber;
+    public Employee() {
+
+    }
+
+    public Long getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(Long employeeId) {
+        this.employeeId = employeeId;
     }
 
     public String getFirstName() {
@@ -80,20 +92,20 @@ public class Employee {
         this.email = email;
     }
 
-    public String getHireDate() {
+    public Date getHireDate() {
         return hireDate;
     }
 
-    public void setHireDate(String hireDate) {
+    public void setHireDate(Date hireDate) {
         this.hireDate = hireDate;
     }
 
-    public Employee getManager() {
-        return manager;
+    public Long getManager() {
+        return managerId;
     }
 
-    public void setManager(Employee manager) {
-        this.manager = manager;
+    public void setManager(Long manager) {
+        this.managerId = manager;
     }
 
     public Long getDepartmentNumber() {
@@ -103,6 +115,4 @@ public class Employee {
     public void setDepartmentNumber(Long departmentNumber) {
         this.departmentNumber = departmentNumber;
     }
-
-
 }
